@@ -31,7 +31,7 @@
 
 Сервис администрации `127.0.0.1:8000/admin`
 
-Демо-пользователи:
+Демо-пользователи: <br>(логин - пароль)<br>
 <strong>admin</strong> - admin <br>
 user1 - python3.7 <br>
 user2 - python3.7 <br>
