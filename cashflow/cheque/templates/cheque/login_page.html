@@ -1,0 +1,35 @@
+{% extends 'cheque/template.html' %}
+{% block title %}<title>Login page</title>{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 m-2">
+                <div class="card p-1">
+                    <h2 class="card-title m-2 text-center">Вход в систему</h2>
+                    <div class="card-body m-0">
+                        <form action="/login_process/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Логин</label>
+                                <input name="login", placeholder="Login" class="form-control" autofocus>
+                                <small class="form-text">Логин и пароль получите у организатора. При возникновении проблем обращайтесь к организаторам.</small>
+                            </div>
+                            <div class="from-group">
+                                <label>Пароль</label>
+                                <input name="password" type="password" placeholder="Password" class="form-control">
+                            </div>
+                            <input type="submit", value="Войти" class="btn btn-primary my-2">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <form action="/login_process/" method="post">
+        {% csrf_token %}
+        <input name="login", placeholder="Login">
+        <input name="password" type="password" placeholder="Password">
+        <input type="submit", value="Log in">
+    </form>-->
+{% endblock %}

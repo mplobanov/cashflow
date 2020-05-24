@@ -1,0 +1,54 @@
+{% extends 'cheque/template.html' %}
+{% block title %}<title>User {{ u.username }}</title>{% endblock %}
+{% block content %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+                <div class="card mb-2">
+                    <div class="card-header">Информация о пользователе</div>
+                    <div class="card-body">
+                        <h2 class="card-title">{{ u.username }}</h2>
+                        <h3 class="card-subtitle text-muted">{{ u.user_info.money }} CR</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+                <div class="card mb-2">
+                    <div class="card-header">Доступные действия</div>
+                    <div class="card-body">
+                        <p class="card-text">Чтобы позволить кому-либо списать С Вашего счета определенную сумму денег, выпишите чек.</p>
+                        <p class="card-text">Чтобы получить деньги, активируйте чек с помощью кода активации (узнайте его у отправителя).</p>
+                        <a href="{% url 'make_cheque' %}" class="btn btn-primary mb-1">Сгенерировать чек</a>
+                        <a href="{% url 'activate_cheque' %}" class="btn btn-outline-primary mb-1">Активировать чек</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+                <div class="card mb-2">
+                    <div class="card-header">Последние несколько чеков</div>
+                    <div class="card-body">
+                        {% for ch in ch_list %}
+                            <a href="{% url 'show_cheque' ch.id %}">Чек №{{ ch.id }}</a> на {{ ch.amount }} CR {% if ch.activated %}<span class="badge badge-success">Активирован</span> {% else %} <span class="badge badge-danger">Ожидает</span> {% endif %} <br>
+                        {% empty %}
+                            У Вас пока ни единого чекa. Попробуйте его <a href="{%  url 'make_cheque' %}">выпустить</a>.
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+                <div class="card mb-2">
+                    <div class="card-header">Звания</div>
+                    <div class="card-body">
+                        {% for rank in rank_list %}
+
+                        {% empty %}
+                            У Вас пока ни единого звания. Попробуйте его <a href="{%  url 'make_cheque' %}">выпустить</a>.
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+{% endblock %}
