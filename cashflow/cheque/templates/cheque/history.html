@@ -1,0 +1,20 @@
+{% extends 'cheque/template.html' %}
+{% load humanize %}
+{% block title %}<title>{{ u.username }} history</title>{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-12"><h1 class="text-center">История операций пользователя {{ u.username }}</h1></div></div>
+    <table style="border-color: black;" class="table">
+    <tr scope=""><th scope="col">Дата операции</th><th scope="col">Содержание операции</th></tr>
+    {% for ev in evs %}
+        <tr scope="row">
+        <td>
+            {{ ev.date|naturaltime }}
+        </td>
+        <td>
+            {{ ev.text }}
+        </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
